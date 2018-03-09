@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from "react-apollo";
+import { withApollo } from "react-apollo";
 import { Box, Flex } from 'grid-styled'
 import MyInput from './MyInput'
 import GITHUB_USER_QUERY from './GitHubUser.graphql'
@@ -15,12 +15,18 @@ class UserSearch extends React.Component {
   }
 
   onChange = (event) => {
-    this.setState({githubusername: event.target.value})
+    this.setState(
+      {
+        githubusername: event.target.value
+      }
+    )
   }
 
   onEnter = (event) => {
-    console.log(event.target.value)
-    fetchGitHubUser(event.target.value)
+    this.props.client.query({
+      query: GITHUB_USER_QUERY,
+      variables: { username: event.target.value }
+    })
   }
 
   render() {
@@ -38,8 +44,4 @@ class UserSearch extends React.Component {
   }
 }
 
-const fetchGitHubUser = graphql(GITHUB_USER_QUERY, {
-  options: { variables: { username: 'tschortsch' } }
-})
-
-export default fetchGitHubUser(UserSearch)
+export default withApollo(UserSearch)
