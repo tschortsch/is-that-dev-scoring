@@ -15,7 +15,7 @@ const githubGraphQlLink = {
 const githubAuthLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   // TODO implement GitHub OAuth procedure
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('itds-github-token');
   // return the headers to the context so httpLink can read them
   return {
     headers: {
