@@ -1,0 +1,5 @@
+query githubUser($username: String!) {
+   user(login: $username) {
+       name,
+   }
+}

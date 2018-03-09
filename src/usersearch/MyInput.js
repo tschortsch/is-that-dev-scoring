@@ -3,7 +3,7 @@ import React from 'react'
 export default class MyInput extends React.Component {
     _handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            this.props.onEnter()
+            this.props.onEnter(e)
         }
     }
 
