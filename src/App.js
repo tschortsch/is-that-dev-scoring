@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Box, Flex } from 'grid-styled'
+import MyInput from './MyInput'
+import styled from 'styled-components'
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      githubusername: ''
+    }
+  }
+
+  onChange = (event) => {
+    this.setState({ githubusername: event.target.value })
+  }
+
+  onEnter = () => {
+    console.log('asdf')
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Flex>
+          <Box width={1 / 2}>Is that dev scoring </Box>
+          <Box><MyInput
+            value={this.state.githubusername}
+            onChange={this.onChange}
+            onEnter={this.onEnter}
+          />
+          </Box>
+        </Flex>
       </div>
     );
   }
